@@ -1,26 +1,98 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-outfit);
+
+  --color-forest: #f4efe4;
+  --color-cream:  #1b1e18;
+  --color-amber:  #c9933a;
+  --color-sage:   #4d6344;
+  --color-card:   #ebe5d6;
+
+  --animate-marquee:         marquee 32s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 32s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4efe4;
+  color: #1b1e18;
+  font-family: var(--font-outfit, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: #c9933a;
+  color: #f4efe4;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #f4efe4; }
+::-webkit-scrollbar-thumb { background: rgba(201,147,58,0.45); border-radius: 2px; }
+
+/* ── react-day-picker — forest theme ───────────────────────────────────── */
+.booking-calendar {
+  --rdp-accent-color:            #c9933a;
+  --rdp-accent-background-color: rgba(201, 147, 58, 0.12);
+  --rdp-range_start-color:       #f4efe4;
+  --rdp-range_end-color:         #f4efe4;
+  --rdp-range_middle-color:      #1b1e18;
+  --rdp-range_start-date-background-color: #c9933a;
+  --rdp-range_end-date-background-color:   #c9933a;
+  --rdp-today-color:             #c9933a;
+  --rdp-outside-opacity:         0.35;
+  --rdp-disabled-opacity:        0.22;
+  --rdp-day_button-border-radius: 0.4rem;
+}
+
+.booking-calendar .rdp-root {
+  width: 100%;
+  --rdp-month-width: 100%;
+}
+
+.booking-calendar .rdp-month_grid {
+  width: 100%;
+}
+
+.booking-calendar .rdp-weekday {
+  color: #4d6344;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.booking-calendar .rdp-button_previous,
+.booking-calendar .rdp-button_next {
+  color: #4d6344;
+  border-radius: 0.5rem;
+}
+
+.booking-calendar .rdp-button_previous:hover,
+.booking-calendar .rdp-button_next:hover {
+  background-color: rgba(27, 30, 24, 0.06);
+  color: #1b1e18;
+}
+
+.booking-calendar .rdp-month_caption {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1b1e18;
+  letter-spacing: 0.02em;
 }
