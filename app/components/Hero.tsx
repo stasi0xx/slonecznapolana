@@ -11,6 +11,8 @@ const FRAME_COUNT = 99;
 const FRAME_PATH = (n: number) =>
   `/assets/hero-frames/frame_${String(n).padStart(4, "0")}.webp`;
 
+const SHADOW = "0 2px 12px rgba(0,0,0,0.45), 0 4px 32px rgba(0,0,0,0.25)";
+
 export function Hero() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -32,7 +34,6 @@ export function Hero() {
     ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
   }, []);
 
-  // Preload all frames
   useEffect(() => {
     const images: HTMLImageElement[] = [];
     for (let i = 1; i <= FRAME_COUNT; i++) {
@@ -47,7 +48,6 @@ export function Hero() {
     else first.onload = () => drawFrame(0);
   }, [drawFrame]);
 
-  // Size canvas to viewport
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -65,7 +65,7 @@ export function Hero() {
 
   useGSAP(
     () => {
-      // Scrub frames as user scrolls through the tall wrapper
+      // Frame scrub through all 99 frames over 300vh scroll
       gsap.to(frameIndex.current, {
         value: FRAME_COUNT - 1,
         ease: "none",
@@ -80,68 +80,94 @@ export function Hero() {
         },
       });
 
-      // Text entrance on page load (no scroll needed)
-      gsap
-        .timeline({ defaults: { ease: "power3.out" } })
-        .from(".hero-tag", { y: 18, opacity: 0, duration: 0.6 })
-        .from(".hero-title", { y: 80, opacity: 0, duration: 1.1 }, "-=0.2")
-        .from(".hero-body", { y: 28, opacity: 0, duration: 0.8 }, "-=0.6")
-        .from(".hero-ctas", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
+      // "Zapraszamy" entrance on load
+      gsap.from(".hero-welcome", {
+        opacity: 0,
+        y: 50,
+        duration: 1.4,
+        ease: "power3.out",
+        delay: 0.3,
+      });
+
+      // "Zapraszamy" exits once and stays hidden — no scrub, no reverse
+      gsap.to(".hero-welcome", {
+        opacity: 0,
+        y: -60,
+        filter: "blur(10px)",
+        duration: 0.9,
+        ease: "power2.in",
+        scrollTrigger: {
+          trigger: wrapperRef.current,
+          start: "38% top",
+          toggleActions: "play none none none",
+        },
+      });
+
+      // "Willa pod Orzechem" + CTAs appear once at ~46% scroll
+      gsap.set(".hero-reveal", { opacity: 0, y: 40 });
+      gsap.to(".hero-reveal", {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: wrapperRef.current,
+          start: "46% top",
+          toggleActions: "play none none none",
+        },
+      });
     },
     { scope: wrapperRef }
   );
 
   return (
-    // 300vh gives ~2× viewport height of actual scroll travel for the scrub
     <div ref={wrapperRef} style={{ height: "300vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden bg-forest">
         <canvas ref={canvasRef} className="absolute inset-0" />
 
-        {/* Legibility overlays */}
-        <div className="absolute inset-0 bg-forest/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-forest/90 via-forest/55 to-forest/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-forest/65 via-transparent to-forest/30" />
-
-        {/* Text content */}
-        <div className="relative z-10 flex items-center h-full px-6 sm:px-10 md:px-16 lg:px-24 pt-20 sm:pt-24 pb-16">
-          <div className="w-full max-w-xs sm:max-w-lg md:max-w-xl lg:max-w-2xl">
-            <p className="hero-tag text-amber text-[0.6rem] sm:text-[0.65rem] tracking-[0.25em] sm:tracking-[0.35em] uppercase mb-5 sm:mb-7 md:mb-8 font-medium">
-              Dom Wypoczynkowy · Chudzewo
-            </p>
-
+        <div className="relative z-10 h-full">
+          {/* Phase 1: Zapraszamy — centered, full viewport */}
+          <div className="hero-welcome absolute inset-0 flex items-center justify-center">
             <h1
-              className="hero-title text-cream font-bold leading-[0.92] mb-5 sm:mb-7 md:mb-8 tracking-tight"
-              style={{ fontSize: "clamp(2.4rem, 6.5vw, 7.5rem)" }}
+              className="text-white font-bold tracking-tight text-center leading-none"
+              style={{
+                fontSize: "clamp(3.5rem, 9vw, 10rem)",
+                textShadow: SHADOW,
+              }}
             >
-              Pod Orzechem.<br />Bez kompromisów.
+              Zapraszamy
+            </h1>
+          </div>
+
+          {/* Phase 2: Willa pod Orzechem + CTAs — centered */}
+          <div className="hero-reveal absolute inset-0 flex flex-col items-center justify-center gap-10">
+            <h1
+              className="text-white font-bold tracking-tight text-center leading-[0.95]"
+              style={{
+                fontSize: "clamp(2.8rem, 7vw, 8.5rem)",
+                textShadow: SHADOW,
+              }}
+            >
+              Willa pod Orzechem
             </h1>
 
-            <p className="hero-body text-sage text-sm sm:text-base md:text-lg max-w-[17rem] sm:max-w-[22rem] mb-8 sm:mb-10 leading-relaxed">
-              Przestronny dom dla 8–12 osób. Sauna, kominek, taras 30 m².
-              Stworzony dla tych, którzy wiedzą, czego chcą.
-            </p>
-
-            <div className="hero-ctas flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="flex flex-col items-center gap-3">
               <a
                 href="#booking"
-                className="bg-amber text-forest font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full text-center hover:bg-amber/88 transition-all duration-300 hover:scale-[1.02]"
+                className="bg-amber text-forest font-semibold px-10 py-4 text-base rounded-full hover:bg-amber/88 transition-all duration-300 hover:scale-[1.03]"
+                style={{ textShadow: "none" }}
               >
                 Zarezerwuj pobyt
               </a>
               <a
                 href="#gallery"
-                className="border border-cream/55 text-cream px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full text-center hover:bg-cream/8 hover:border-cream/75 transition-all duration-300"
+                className="border-2 border-cream/90 text-white px-10 py-4 text-base rounded-full bg-black/30 backdrop-blur-sm hover:bg-cream/15 hover:border-cream transition-all duration-300"
+                style={{ textShadow: "none" }}
               >
                 Odkryj domek
               </a>
             </div>
           </div>
-        </div>
-
-        {/* Scroll hint */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-sage/40">
-          <span className="text-[0.6rem] tracking-[0.25em] uppercase">Przewiń</span>
-          <div className="w-px h-10 bg-gradient-to-b from-sage/30 to-transparent" />
         </div>
       </div>
     </div>
