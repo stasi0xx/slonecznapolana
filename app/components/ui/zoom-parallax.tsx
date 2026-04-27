@@ -19,11 +19,12 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
     offset: ['start start', 'end end'],
   });
 
-  const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4]);
-  const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5]);
-  const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6]);
-  const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8]);
-  const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9]);
+  const scale4 = useTransform(scrollYProgress, [0, 0.85], [1, 4]);
+  const scale5 = useTransform(scrollYProgress, [0, 0.85], [1, 5]);
+  const scale6 = useTransform(scrollYProgress, [0, 0.85], [1, 6]);
+  const scale8 = useTransform(scrollYProgress, [0, 0.85], [1, 8]);
+  const scale9 = useTransform(scrollYProgress, [0, 0.85], [1, 9]);
+  const fadeOut = useTransform(scrollYProgress, [0.75, 1], [0, 1]);
 
   const scales = [scale4, scale5, scale6, scale5, scale6, scale8, scale9];
 
@@ -57,6 +58,12 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
             </motion.div>
           );
         })}
+
+        {/* fade to page background so the sticky release is invisible */}
+        <motion.div
+          style={{ opacity: fadeOut, backgroundColor: '#0c0e09' }}
+          className="pointer-events-none absolute inset-0 z-10"
+        />
       </div>
     </div>
   );

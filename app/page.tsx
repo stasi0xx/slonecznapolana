@@ -11,7 +11,7 @@ import { Footer } from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden w-full max-w-full bg-forest">
+    <main className="overflow-x-clip w-full max-w-full bg-forest">
       <Nav />
       <Hero />
       <Marquee />

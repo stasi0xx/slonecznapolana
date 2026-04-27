@@ -1,86 +1,149 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
+
+const FRAME_COUNT = 99;
+const FRAME_PATH = (n: number) =>
+  `/assets/hero-frames/frame_${String(n).padStart(4, "0")}.webp`;
 
 export function Hero() {
-  const container = useRef<HTMLElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const frameIndex = useRef({ value: 0 });
+
+  const drawFrame = useCallback((index: number) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const img = imagesRef.current[index];
+    if (!ctx || !img?.complete) return;
+
+    const { width: cw, height: ch } = canvas;
+    const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+    const dw = img.naturalWidth * scale;
+    const dh = img.naturalHeight * scale;
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+  }, []);
+
+  // Preload all frames
+  useEffect(() => {
+    const images: HTMLImageElement[] = [];
+    for (let i = 1; i <= FRAME_COUNT; i++) {
+      const img = new Image();
+      img.src = FRAME_PATH(i);
+      images.push(img);
+    }
+    imagesRef.current = images;
+
+    const first = images[0];
+    if (first.complete) drawFrame(0);
+    else first.onload = () => drawFrame(0);
+  }, [drawFrame]);
+
+  // Size canvas to viewport
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      drawFrame(frameIndex.current.value);
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
+  }, [drawFrame]);
 
   useGSAP(
     () => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.from(".hero-tag",   { y: 18, opacity: 0, duration: 0.6 })
-        .from(".hero-title", { y: 90, opacity: 0, duration: 1.2 }, "-=0.2")
-        .from(".hero-body",  { y: 30, opacity: 0, duration: 0.8 }, "-=0.7")
-        .from(".hero-ctas",  { y: 22, opacity: 0, duration: 0.6 }, "-=0.5")
-        .from(
-          ".hero-image",
-          { scale: 1.06, opacity: 0, duration: 1.8, ease: "power2.out" },
-          "<-1.4"
-        );
+      // Scrub frames as user scrolls through the tall wrapper
+      gsap.to(frameIndex.current, {
+        value: FRAME_COUNT - 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: wrapperRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.8,
+        },
+        onUpdate() {
+          drawFrame(Math.round(frameIndex.current.value));
+        },
+      });
+
+      // Text entrance on page load (no scroll needed)
+      gsap
+        .timeline({ defaults: { ease: "power3.out" } })
+        .from(".hero-tag", { y: 18, opacity: 0, duration: 0.6 })
+        .from(".hero-title", { y: 80, opacity: 0, duration: 1.1 }, "-=0.2")
+        .from(".hero-body", { y: 28, opacity: 0, duration: 0.8 }, "-=0.6")
+        .from(".hero-ctas", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
     },
-    { scope: container }
+    { scope: wrapperRef }
   );
 
   return (
-    <section
-      ref={container}
-      className="relative min-h-screen flex items-center overflow-hidden bg-forest"
-    >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_70%_50%,rgba(201,147,58,0.06),transparent)]" />
+    // 300vh gives ~2× viewport height of actual scroll travel for the scrub
+    <div ref={wrapperRef} style={{ height: "300vh" }}>
+      <div className="sticky top-0 h-screen overflow-hidden bg-forest">
+        <canvas ref={canvasRef} className="absolute inset-0" />
 
-      <div className="hero-image absolute right-[-6%] top-[8%] w-[52%] h-[82%] rounded-3xl overflow-hidden rotate-[2deg] hidden lg:block will-change-transform">
-        <img
-          src="/images/domek-front.jpg"
-          alt="Domek Chudzewo"
-          className="w-full h-full object-cover brightness-90 contrast-[1.08]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-forest/80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-forest/40 to-transparent" />
-      </div>
+        {/* Legibility overlays */}
+        <div className="absolute inset-0 bg-forest/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-forest/90 via-forest/55 to-forest/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest/65 via-transparent to-forest/30" />
 
-      <div className="relative z-10 w-full px-8 md:px-16 lg:px-24 pt-36 pb-24">
-        <div className="max-w-2xl">
-          <p className="hero-tag text-amber text-[0.65rem] tracking-[0.35em] uppercase mb-8 font-medium">
-            Dom Wypoczynkowy · Chudzewo
-          </p>
+        {/* Text content */}
+        <div className="relative z-10 flex items-center h-full px-6 sm:px-10 md:px-16 lg:px-24 pt-20 sm:pt-24 pb-16">
+          <div className="w-full max-w-xs sm:max-w-lg md:max-w-xl lg:max-w-2xl">
+            <p className="hero-tag text-amber text-[0.6rem] sm:text-[0.65rem] tracking-[0.25em] sm:tracking-[0.35em] uppercase mb-5 sm:mb-7 md:mb-8 font-medium">
+              Dom Wypoczynkowy · Chudzewo
+            </p>
 
-          <h1
-            className="hero-title text-cream font-bold leading-[0.92] mb-8 tracking-tight"
-            style={{ fontSize: "clamp(3.5rem, 6.5vw, 7.5rem)" }}
-          >
-            Pod Orzechem.<br />Bez kompromisów.
-          </h1>
-
-          <p className="hero-body text-sage text-lg max-w-[22rem] mb-10 leading-relaxed">
-            Przestronny dom dla 8–12 osób. Sauna, kominek, taras 30 m².
-            Stworzony dla tych, którzy wiedzą, czego chcą.
-          </p>
-
-          <div className="hero-ctas flex flex-wrap gap-4">
-            <a
-              href="#booking"
-              className="bg-amber text-forest font-semibold px-8 py-4 rounded-full hover:bg-amber/88 transition-all duration-300 hover:scale-[1.02]"
+            <h1
+              className="hero-title text-cream font-bold leading-[0.92] mb-5 sm:mb-7 md:mb-8 tracking-tight"
+              style={{ fontSize: "clamp(2.4rem, 6.5vw, 7.5rem)" }}
             >
-              Zarezerwuj pobyt
-            </a>
-            <a
-              href="#gallery"
-              className="border border-cream/35 text-cream px-8 py-4 rounded-full hover:bg-cream/8 hover:border-cream/55 transition-all duration-300"
-            >
-              Odkryj domek
-            </a>
+              Pod Orzechem.<br />Bez kompromisów.
+            </h1>
+
+            <p className="hero-body text-sage text-sm sm:text-base md:text-lg max-w-[17rem] sm:max-w-[22rem] mb-8 sm:mb-10 leading-relaxed">
+              Przestronny dom dla 8–12 osób. Sauna, kominek, taras 30 m².
+              Stworzony dla tych, którzy wiedzą, czego chcą.
+            </p>
+
+            <div className="hero-ctas flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <a
+                href="#booking"
+                className="bg-amber text-forest font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full text-center hover:bg-amber/88 transition-all duration-300 hover:scale-[1.02]"
+              >
+                Zarezerwuj pobyt
+              </a>
+              <a
+                href="#gallery"
+                className="border border-cream/55 text-cream px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-full text-center hover:bg-cream/8 hover:border-cream/75 transition-all duration-300"
+              >
+                Odkryj domek
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-sage/40">
-        <span className="text-[0.6rem] tracking-[0.25em] uppercase">Przewiń</span>
-        <div className="w-px h-10 bg-gradient-to-b from-sage/30 to-transparent" />
+        {/* Scroll hint */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-sage/40">
+          <span className="text-[0.6rem] tracking-[0.25em] uppercase">Przewiń</span>
+          <div className="w-px h-10 bg-gradient-to-b from-sage/30 to-transparent" />
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

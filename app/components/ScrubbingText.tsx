@@ -26,8 +26,8 @@ export function ScrubbingText() {
           stagger: 0.04,
           scrollTrigger: {
             trigger: container.current,
-            start: "top 72%",
-            end: "bottom 28%",
+            start: "top 85%",
+            end: "bottom 25%",
             scrub: 1.8,
           },
         }

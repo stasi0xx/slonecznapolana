@@ -68,6 +68,19 @@ body {
 
 .booking-calendar .rdp-month_grid {
   width: 100%;
+  table-layout: fixed;
+}
+
+.booking-calendar .rdp-day {
+  min-width: 0;
+}
+
+.booking-calendar .rdp-day_button {
+  width: 100%;
+  min-height: 1.9rem;
+  height: auto;
+  padding: 0.1rem;
+  box-sizing: border-box;
 }
 
 .booking-calendar .rdp-weekday {
