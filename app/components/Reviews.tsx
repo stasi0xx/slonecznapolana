@@ -1,27 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { property } from "@/app/config/property";
 
-const reviews = [
-  {
-    name: "Anna Kowalska",
-    date: "Sierpień 2025",
-    text: "Niesamowite miejsce. Cisza, natura i piękny domek — dokładnie tego potrzebowaliśmy po intensywnym roku. Sauna była hitem wieczorów. Na pewno wrócimy.",
-    image: "https://picsum.photos/seed/portrait-anna/200/200",
-  },
-  {
-    name: "Marek Wiśniewski",
-    date: "Lipiec 2025",
-    text: "Idealne miejsce dla rodziny. Dzieci zachwycone lasem, my zachwyceni kuchnią i kominkiem. Dom bardzo dobrze wyposażony, czysty i przytulny.",
-    image: "https://picsum.photos/seed/portrait-marek/200/200",
-  },
-  {
-    name: "Katarzyna Lewandowska",
-    date: "Czerwiec 2025",
-    text: "Drugie lato tutaj i znowu zachwyt. Widok z tarasu jest bezcenny. Właściciele bardzo pomocni. Szczerze polecam każdemu, kto szuka spokoju.",
-    image: "https://picsum.photos/seed/portrait-kasia/200/200",
-  },
-];
+const reviews = property.reviews;
 
 export function Reviews() {
   const [active, setActive] = useState(0);

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { property } from "@/app/config/property";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -8,16 +9,15 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Pod Orzechem — Dom Wypoczynkowy Chudzewo",
-  description:
-    "Dom Wypoczynkowy Pod Orzechem w Chudzewie. 200 m², 8-12 osób, prywatna sauna, taras 30 m². Idealne na eventy, urodziny i wypoczynek. Rezerwacje online.",
+  title: property.meta.title,
+  description: property.meta.description,
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pl" className={`${outfit.variable} h-full`}>
+    <html lang={property.meta.language} className={`${outfit.variable} h-full`}>
       <body className="min-h-full flex flex-col bg-forest text-cream">
         {children}
       </body>

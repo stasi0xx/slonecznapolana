@@ -5,6 +5,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { property } from "@/app/config/property";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const FRAME_COUNT = 99;
@@ -117,7 +119,7 @@ export function Hero() {
                 textShadow: SHADOW,
               }}
             >
-              Willa pod Orzechem
+              {property.name}
             </h1>
 
             <div className="flex flex-col items-center gap-3">
@@ -126,14 +128,14 @@ export function Hero() {
                 className="bg-amber text-forest font-semibold px-10 py-4 text-base rounded-full hover:bg-amber/88 transition-all duration-300 hover:scale-[1.03]"
                 style={{ textShadow: "none" }}
               >
-                Zarezerwuj pobyt
+                {property.copy.heroCta}
               </a>
               <a
                 href="#gallery"
                 className="border-2 border-cream/90 text-white px-10 py-4 text-base rounded-full bg-black/30 backdrop-blur-sm hover:bg-cream/15 hover:border-cream transition-all duration-300"
                 style={{ textShadow: "none" }}
               >
-                Odkryj domek
+                {property.copy.heroCtaSecondary}
               </a>
             </div>
           </div>

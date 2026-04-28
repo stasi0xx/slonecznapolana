@@ -7,7 +7,7 @@ import { pl } from "date-fns/locale"
 import { isBefore, isAfter, parseISO, addDays } from "date-fns"
 import "react-day-picker/style.css"
 import { calculateStay } from "@/app/lib/pricing"
-import { PRICING } from "@/app/config/pricing"
+import { property } from "@/app/config/property"
 import { createBooking } from "@/app/actions/bookings"
 import type { BookedRange } from "@/app/actions/bookings"
 
@@ -124,17 +124,16 @@ export function BookingCta() {
             {/* ── left: info + summary ──────────────────────────── */}
             <div className="lg:sticky lg:top-10">
               <p className="text-amber text-[0.65rem] tracking-[0.3em] uppercase mb-4 font-medium">
-                Rezerwacja
+                {property.copy.bookingLabel}
               </p>
               <h2
                 className="text-cream font-bold leading-tight mb-5 tracking-tight"
                 style={{ fontSize: "clamp(2.4rem, 4vw, 4rem)" }}
               >
-                Zaplanuj swój pobyt.
+                {property.copy.bookingHeading}
               </h2>
               <p className="text-sage text-lg mb-10 leading-relaxed">
-                Rezerwacja bezpośrednia — bez pośredników i ukrytych opłat.
-                Wybierz termin i sprawdź dostępność.
+                {property.copy.bookingSubhead}
               </p>
 
               <div className="mb-10">
@@ -142,9 +141,9 @@ export function BookingCta() {
                   className="text-cream font-bold leading-none"
                   style={{ fontSize: "clamp(2.2rem, 3.5vw, 3.2rem)" }}
                 >
-                  od <span className="text-amber">450 zł</span>
+                  od <span className="text-amber">{property.pricing.displayFrom}</span>
                 </p>
-                <p className="text-sage text-sm mt-2">za noc · cena zmienia się sezonowo</p>
+                <p className="text-sage text-sm mt-2">{property.pricing.displaySuffix}</p>
               </div>
 
               {summary?.valid && (
@@ -156,7 +155,7 @@ export function BookingCta() {
                     </span>
                   </div>
                   <p className="text-sage/60 text-xs">
-                    Bezpłatne odwołanie do 7 dni przed przyjazdem
+                    {property.cancellationPolicy}
                   </p>
                 </div>
               )}
@@ -199,7 +198,7 @@ export function BookingCta() {
                       onChange={(e) => setGuests(Number(e.target.value))}
                       className="bg-transparent text-cream w-full text-sm focus:outline-none cursor-pointer appearance-none"
                     >
-                      {Array.from({ length: PRICING.maxGuests }, (_, i) => i + 1).map((n) => (
+                      {Array.from({ length: property.pricing.maxGuests }, (_, i) => i + 1).map((n) => (
                         <option key={n} value={n} className="bg-card text-cream">
                           {n} {n === 1 ? "osoba" : n < 5 ? "osoby" : "osób"}
                         </option>
@@ -265,7 +264,7 @@ export function BookingCta() {
                     {formState === "submitting"
                       ? "Wysyłanie..."
                       : canBook
-                      ? "Zarezerwuj teraz"
+                      ? property.copy.bookingSubmit
                       : "Wypełnij formularz"}
                   </button>
 

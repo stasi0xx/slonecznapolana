@@ -5,10 +5,9 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { property } from "@/app/config/property";
 
-const sentence =
-  "Tutaj czas nabiera innego znaczenia. Każdy poranek przynosi spokój, którego szukasz od lat. Każdy wieczór przy kominku to chwila tylko dla siebie. Nie ma pilnych maili. Nie ma korków. Jest tylko cisza, zieleń i ty.";
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export function ScrubbingText() {
   const container = useRef<HTMLDivElement>(null);
@@ -42,7 +41,7 @@ export function ScrubbingText() {
         className="text-cream font-bold leading-snug max-w-5xl tracking-tight"
         style={{ fontSize: "clamp(1.9rem, 3.5vw, 3.8rem)" }}
       >
-        {sentence.split(" ").map((word, i) => (
+        {property.narrative.split(" ").map((word, i) => (
           <span
             key={i}
             className="scrub-word inline-block mr-[0.28em]"

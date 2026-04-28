@@ -1,52 +1,15 @@
-const cards = [
-  {
-    id: "nature",
-    label: "Przyroda i spokój",
-    desc: "Dom otoczony zielenią, z dala od zgiełku miast",
-    image: "/images/przyroda.jpg",
-    col: "md:col-span-2",
-    row: "md:row-span-2",
-    mobileH: "h-[320px]",
-    large: true,
-  },
-  {
-    id: "wifi",
-    label: "Szybki WiFi",
-    desc: "Światłowód 100 Mb/s",
-    col: "md:col-span-1",
-    row: "md:row-span-1",
-    mobileH: "h-[160px]",
-  },
-  {
-    id: "sauna",
-    label: "Prywatna sauna",
-    desc: "Fińska, opałana drewnem",
-    image: "https://picsum.photos/seed/wood-sauna-dark/600/600",
-    col: "md:col-span-1",
-    row: "md:row-span-1",
-    mobileH: "h-[220px]",
-  },
-  {
-    id: "parking",
-    label: "Parking",
-    desc: "2 miejsca w garażu + kilka na posesji",
-    col: "md:col-span-1",
-    row: "md:row-span-1",
-    mobileH: "h-[160px]",
-  },
-  {
-    id: "kitchen",
-    label: "Pełna kuchnia",
-    desc: "Zabudowana, z piekarnikiem, zmywarką i ekspresem",
-    image: "https://picsum.photos/seed/minimal-kitchen-dark/1200/600",
-    col: "md:col-span-2",
-    row: "md:row-span-1",
-    mobileH: "h-[220px]",
-    wide: true,
-  },
-];
-
+import { property } from "@/app/config/property";
 import { RevealOnScroll } from "@/app/components/RevealOnScroll";
+
+function layoutClasses(amenity: (typeof property.amenities)[number]) {
+  if ("large" in amenity && amenity.large)
+    return { col: "md:col-span-2", row: "md:row-span-2", mobileH: "h-[320px]" };
+  if ("wide" in amenity && amenity.wide)
+    return { col: "md:col-span-2", row: "md:row-span-1", mobileH: "h-[220px]" };
+  if (amenity.image)
+    return { col: "md:col-span-1", row: "md:row-span-1", mobileH: "h-[220px]" };
+  return { col: "md:col-span-1", row: "md:row-span-1", mobileH: "h-[160px]" };
+}
 
 export function AmenitiesGrid() {
   return (
@@ -62,38 +25,41 @@ export function AmenitiesGrid() {
       </h2>
 
       <RevealOnScroll className="grid grid-cols-1 md:grid-cols-3 md:auto-rows-[240px] gap-3 md:grid-flow-dense">
-        {cards.map((card) => (
-          <div
-            key={card.id}
-            className={`reveal-item ${card.col} ${card.row} ${card.mobileH} md:h-auto relative rounded-2xl overflow-hidden bg-card border border-cream/15 group`}
-          >
-            {card.image && (
-              <img
-                src={card.image}
-                alt={card.label}
-                className="absolute inset-0 w-full h-full object-cover brightness-75 contrast-[1.05] group-hover:scale-105 transition-transform duration-700 ease-out will-change-transform"
-              />
-            )}
+        {property.amenities.map((amenity) => {
+          const { col, row, mobileH } = layoutClasses(amenity);
+          const isLarge = "large" in amenity && amenity.large;
+          return (
+            <div
+              key={amenity.id}
+              className={`reveal-item ${col} ${row} ${mobileH} md:h-auto relative rounded-2xl overflow-hidden bg-card border border-cream/15 group`}
+            >
+              {amenity.image && (
+                <img
+                  src={amenity.image}
+                  alt={amenity.label}
+                  className="absolute inset-0 w-full h-full object-cover brightness-75 contrast-[1.05] group-hover:scale-105 transition-transform duration-700 ease-out will-change-transform"
+                />
+              )}
 
-            {!card.image && (
-              <div className="absolute inset-0 bg-gradient-to-br from-card to-sage/10" />
-            )}
+              {!amenity.image && (
+                <div className="absolute inset-0 bg-gradient-to-br from-card to-sage/10" />
+              )}
 
-            {card.image && (
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
-            )}
+              {amenity.image && (
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
+              )}
 
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <p
-                className={`font-semibold mb-1 ${card.image ? "text-white" : "text-cream"} ${card.large ? "text-xl" : "text-base"
-                  }`}
-              >
-                {card.label}
-              </p>
-              <p className={`text-sm leading-snug ${card.image ? "text-white/65" : "text-sage"}`}>{card.desc}</p>
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <p
+                  className={`font-semibold mb-1 ${amenity.image ? "text-white" : "text-cream"} ${isLarge ? "text-xl" : "text-base"}`}
+                >
+                  {amenity.label}
+                </p>
+                <p className={`text-sm leading-snug ${amenity.image ? "text-white/65" : "text-sage"}`}>{amenity.desc}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </RevealOnScroll>
     </section>
   );

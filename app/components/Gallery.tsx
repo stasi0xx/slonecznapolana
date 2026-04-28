@@ -1,16 +1,7 @@
 "use client";
 
 import { ZoomParallax } from "@/app/components/ui/zoom-parallax";
-
-const photos = [
-  { src: "/images/domek-front-2.jpg", alt: "Domek Pod Orzechem" },
-  { src: "/images/inside/foto1.jpg", alt: "Wnętrze — salon" },
-  { src: "/images/rzepak-domek.jpg", alt: "Domek wśród natury" },
-  { src: "/images/inside/foto2.jpg", alt: "Sypialnia główna" },
-  { src: "/images/inside/foto3.jpg", alt: "Kuchnia i jadalnia" },
-  { src: "/images/rzepak-zoom.jpg", alt: "Okolica — Mazury" },
-  { src: "/images/domek-front.jpg", alt: "Taras i ogród" },
-];
+import { property } from "@/app/config/property";
 
 export function Gallery() {
   return (
@@ -27,7 +18,7 @@ export function Gallery() {
         </h2>
       </div>
 
-      <ZoomParallax images={photos} />
+      <ZoomParallax images={property.gallery} />
     </section>
   );
 }

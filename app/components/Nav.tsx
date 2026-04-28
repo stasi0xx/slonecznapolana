@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { property } from "@/app/config/property";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -49,7 +50,7 @@ export function Nav() {
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
           className="text-cream font-semibold tracking-tight text-base whitespace-nowrap"
         >
-          Chudzewo
+          {property.location.split(",")[0].trim()}
         </a>
 
         <div className="hidden md:flex items-center gap-5 text-sm text-sage">

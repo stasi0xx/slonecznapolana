@@ -5,70 +5,11 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { property } from "@/app/config/property";
+
 gsap.registerPlugin(ScrollTrigger);
 
-const cards = [
-  {
-    image: "/images/domek-front.jpg",
-    caption: "Dom otoczony zielenią",
-    note: "4 rowery do dyspozycji",
-    rotate: "-1.8deg",
-  },
-  {
-    image: "/images/grill.jpg",
-    caption: "Grill elektryczny",
-    note: "Na tarasie, do dyspozycji gości",
-    rotate: "2.2deg",
-  },
-  {
-    image: "/images/fota2.jpg",
-    caption: "Wnętrze z charakterem",
-    note: "Ekologiczne produkty (za dodatkową opłatą)",
-    rotate: "-1.1deg",
-  },
-  {
-    image: "/images/inside/foto1.jpg",
-    caption: "Kominek na wieczory",
-    note: "Drewno i węgiel zapewnione",
-    rotate: "2.8deg",
-  },
-  {
-    image: "/images/inside/foto3.jpg",
-    caption: "Przestronna kuchnia",
-    note: "Grill elektryczny do dyspozycji",
-    rotate: "-2.4deg",
-  },
-  {
-    image: "/images/fota.jpg",
-    caption: "Jezioro 450 m stąd",
-    note: "Wędki dostępne dla gości",
-    rotate: "1.5deg",
-  },
-  {
-    image: "/images/sypialnia.jpg",
-    caption: "Sypialnia",
-    note: "Ciche poranki, miękka pościel",
-    rotate: "-1.9deg",
-  },
-  {
-    image: "/images/taras.jpg",
-    caption: "30 m² tarasu",
-    note: "Palenisko na tarasie",
-    rotate: "2.1deg",
-  },
-  {
-    image: "/images/salon.jpg",
-    caption: "Salon",
-    note: "Boisko do siatkówki na terenie",
-    rotate: "-1.3deg",
-  },
-  {
-    image: "/images/domek-front-2.jpg",
-    caption: "Dom w każdej porze roku",
-    note: "Zima, wiosna, lato, jesień",
-    rotate: "2.5deg",
-  },
-];
+const ROTATIONS = ["-1.8deg","2.2deg","-1.1deg","2.8deg","-2.4deg","1.5deg","-1.9deg","2.1deg","-1.3deg","2.5deg"];
 
 export function Description() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -113,8 +54,7 @@ export function Description() {
               {" "}czas zwalnia.
             </h2>
             <p className="text-sage text-base md:text-lg leading-relaxed max-w-xl">
-              Dom Wypoczynkowy Pod Orzechem w Chudzewie — z dala od zgiełku,
-              wśród ciszy i zieleni Mazur.
+              {property.description}
             </p>
           </div>
         </div>
@@ -125,11 +65,11 @@ export function Description() {
           className="flex gap-4 md:gap-6 px-6 md:px-16 lg:px-24 pb-4 will-change-transform"
           style={{ width: "max-content" }}
         >
-          {cards.map((card, i) => (
+          {property.descriptionCards.map((card, i) => (
             <div
               key={i}
               className="flex-none transition-transform duration-300 hover:scale-105"
-              style={{ transform: `rotate(${card.rotate})` }}
+              style={{ transform: `rotate(${ROTATIONS[i % ROTATIONS.length]})` }}
             >
               <div
                 className="bg-white shadow-[0_4px_24px_rgba(0,0,0,0.13),0_1px_4px_rgba(0,0,0,0.08)] flex flex-col"
@@ -162,12 +102,7 @@ export function Description() {
         {/* Stats */}
         <div className="px-6 md:px-16 lg:px-24 mt-6 md:mt-16 flex-none">
           <div className="flex flex-wrap gap-6 md:gap-10 text-sm border-t border-cream/15 pt-6 md:pt-12">
-            {[
-              { value: "8–12", label: "Osób" },
-              { value: "200 m²", label: "Powierzchnia" },
-              { value: "30 m²", label: "Taras" },
-              { value: "450 m", label: "Do jeziora" },
-            ].map((stat) => (
+            {property.stats.map((stat) => (
               <div key={stat.label}>
                 <p
                   className="text-amber font-bold"

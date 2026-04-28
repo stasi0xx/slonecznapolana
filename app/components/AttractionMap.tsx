@@ -5,41 +5,9 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+import { property } from "@/app/config/property";
 
-const STATIONS = [
-  {
-    km: "1",
-    name: "Zabytkowy Kościół w Mokowie",
-    tag: "Kościół & Zwiedzanie",
-    desc: "Prywatna plaża zaledwie 450 m od domku. Krystalicznie czysta woda, wypożyczalnia kajaków i spokojne wędkowanie — wszystko w zasięgu spaceru.",
-    img: "/images/atrakcje/mokowo.jpg",
-    side: "right" as const,
-  },
-  {
-    km: "5",
-    name: "Dwór z XIXw. w Dyblin",
-    tag: "Szlaki & przyroda",
-    desc: "Tysiące hektarów pierwotnego mazurskiego lasu. Szlaki rowerowe i piesze prowadzą między jeziorami, wśród wiekowych sosen i cichych torfowisk.",
-    img: "/images/atrakcje/dyblin.jpg",
-    side: "left" as const,
-  },
-  {
-    km: "20",
-    name: "Jezioro Piaseczno",
-    tag: "Plaża & Jezioro",
-    desc: "Gotycki zamek Kapituły Warmińskiej z XIV w., klimatyczne stare miasto nad rzeką Łyną i najlepsze restauracje regionu. Idealna wycieczka na cały dzień.",
-    img: "https://picsum.photos/seed/olsztyn-castle-town/640/420",
-    side: "right" as const,
-  },
-] satisfies {
-  km: string;
-  name: string;
-  tag: string;
-  desc: string;
-  img: string;
-  side: "left" | "right";
-}[];
+gsap.registerPlugin(ScrollTrigger);
 
 export function AttractionMap() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -149,11 +117,10 @@ export function AttractionMap() {
 
         {/* Stations */}
         <div className="flex flex-col gap-20 md:gap-28 relative z-10">
-          {STATIONS.map((station, i) => (
+          {property.attractions.map((station, i) => (
             <div
               key={station.name}
-              className={`flex items-center ${station.side === "left" ? "flex-row" : "flex-row-reverse"
-                }`}
+              className={`flex items-center ${station.side === "left" ? "flex-row" : "flex-row-reverse"}`}
             >
               {/* Card */}
               <div className="flex-1">
@@ -162,7 +129,6 @@ export function AttractionMap() {
                   data-side={station.side}
                   style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.05)" }}
                 >
-                  {/* Distance — prominent at top */}
                   <div className="px-6 pt-6 pb-1 flex items-baseline gap-2">
                     <span
                       className="text-amber font-bold leading-none"
@@ -171,17 +137,13 @@ export function AttractionMap() {
                       {station.km}
                     </span>
                     <span className="text-sage text-sm font-medium tracking-wide">
-                      km od domku
+                      {station.suffix}
                     </span>
                   </div>
 
-                  {/* Photo */}
-                  <div
-                    className="mx-6 mt-4 rounded-xl overflow-hidden"
-                    style={{ height: 220 }}
-                  >
+                  <div className="mx-6 mt-4 rounded-xl overflow-hidden" style={{ height: 220 }}>
                     <img
-                      src={station.img}
+                      src={station.image}
                       alt={station.name}
                       className="w-full h-full object-cover"
                       loading="lazy"
@@ -189,7 +151,6 @@ export function AttractionMap() {
                     />
                   </div>
 
-                  {/* Text */}
                   <div className="px-6 pt-4 pb-7">
                     <p className="text-sage text-[0.6rem] tracking-[0.22em] uppercase font-semibold mb-1.5">
                       {station.tag}
@@ -207,17 +168,12 @@ export function AttractionMap() {
                 </div>
               </div>
 
-              {/* Center pin — hidden on mobile */}
-              <div
-                aria-hidden
-                className="hidden md:flex flex-shrink-0 w-24 justify-center"
-              >
+              <div aria-hidden className="hidden md:flex flex-shrink-0 w-24 justify-center">
                 <div className="atm-pin w-11 h-11 rounded-full bg-amber flex items-center justify-center shadow-md">
                   <span className="text-forest font-bold text-sm">{i + 1}</span>
                 </div>
               </div>
 
-              {/* Spacer on the opposite side — hidden on mobile */}
               <div className="hidden md:block flex-1" />
             </div>
           ))}

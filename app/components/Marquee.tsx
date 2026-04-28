@@ -1,29 +1,6 @@
-const items = [
-  "SAUNA FIŃSKA",
-  "PEŁNA KUCHNIA",
-  "8-12 OSÓB",
-  "SZYBKI WIFI",
-  "GARAŻ + PARKING",
-  "KOMINEK",
-  "TARAS 30 M²",
-  "EVENTY",
-  "URODZINY",
-  "BABY SHOWER",
-  "PREZENTACJE FIRMOWE",
-  "200 M² POWIERZCHNI",
-  "SAUNA FIŃSKA",
-  "PEŁNA KUCHNIA",
-  "8-12 OSÓB",
-  "SZYBKI WIFI",
-  "GARAŻ + PARKING",
-  "KOMINEK",
-  "TARAS 30 M²",
-  "EVENTY",
-  "URODZINY",
-  "BABY SHOWER",
-  "PREZENTACJE FIRMOWE",
-  "200 M² POWIERZCHNI",
-];
+import { property } from "@/app/config/property";
+
+const items = [...property.marquee, ...property.marquee];
 
 export function Marquee() {
   return (
