@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -45,12 +44,13 @@ export function Nav() {
             : "bg-transparent border border-transparent"
         }`}
       >
-        <Link
-          href="/"
+        <a
+          href="#"
+          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
           className="text-cream font-semibold tracking-tight text-base whitespace-nowrap"
         >
           Chudzewo
-        </Link>
+        </a>
 
         <div className="hidden md:flex items-center gap-5 text-sm text-sage">
           <a href="#amenities" className="hover:text-cream transition-colors duration-200">

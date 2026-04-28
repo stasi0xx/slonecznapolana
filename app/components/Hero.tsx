@@ -18,6 +18,17 @@ export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const frameIndex = useRef({ value: 0 });
+  const textRevealedRef = useRef(false);
+
+  const revealText = useCallback(() => {
+    if (textRevealedRef.current) return;
+    textRevealedRef.current = true;
+    gsap.fromTo(
+      ".hero-reveal",
+      { opacity: 0, y: 36 },
+      { opacity: 1, y: 0, duration: 1.4, ease: "power3.out", delay: 0.2 }
+    );
+  }, []);
 
   const drawFrame = useCallback((index: number) => {
     const canvas = canvasRef.current;
@@ -44,9 +55,16 @@ export function Hero() {
     imagesRef.current = images;
 
     const first = images[0];
-    if (first.complete) drawFrame(0);
-    else first.onload = () => drawFrame(0);
-  }, [drawFrame]);
+    if (first.complete) {
+      drawFrame(0);
+      revealText();
+    } else {
+      first.onload = () => {
+        drawFrame(0);
+        revealText();
+      };
+    }
+  }, [drawFrame, revealText]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -65,7 +83,6 @@ export function Hero() {
 
   useGSAP(
     () => {
-      // Frame scrub through all 99 frames over 300vh scroll
       gsap.to(frameIndex.current, {
         value: FRAME_COUNT - 1,
         ease: "none",
@@ -79,43 +96,6 @@ export function Hero() {
           drawFrame(Math.round(frameIndex.current.value));
         },
       });
-
-      // "Zapraszamy" entrance on load
-      gsap.from(".hero-welcome", {
-        opacity: 0,
-        y: 50,
-        duration: 1.4,
-        ease: "power3.out",
-        delay: 0.3,
-      });
-
-      // "Zapraszamy" exits once and stays hidden — no scrub, no reverse
-      gsap.to(".hero-welcome", {
-        opacity: 0,
-        y: -60,
-        filter: "blur(10px)",
-        duration: 0.9,
-        ease: "power2.in",
-        scrollTrigger: {
-          trigger: wrapperRef.current,
-          start: "38% top",
-          toggleActions: "play none none none",
-        },
-      });
-
-      // "Willa pod Orzechem" + CTAs appear once at ~46% scroll
-      gsap.set(".hero-reveal", { opacity: 0, y: 40 });
-      gsap.to(".hero-reveal", {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: wrapperRef.current,
-          start: "46% top",
-          toggleActions: "play none none none",
-        },
-      });
     },
     { scope: wrapperRef }
   );
@@ -126,21 +106,10 @@ export function Hero() {
         <canvas ref={canvasRef} className="absolute inset-0" />
 
         <div className="relative z-10 h-full">
-          {/* Phase 1: Zapraszamy — centered, full viewport */}
-          <div className="hero-welcome absolute inset-0 flex items-center justify-center">
-            <h1
-              className="text-white font-bold tracking-tight text-center leading-none"
-              style={{
-                fontSize: "clamp(3.5rem, 9vw, 10rem)",
-                textShadow: SHADOW,
-              }}
-            >
-              Zapraszamy
-            </h1>
-          </div>
-
-          {/* Phase 2: Willa pod Orzechem + CTAs — centered */}
-          <div className="hero-reveal absolute inset-0 flex flex-col items-center justify-center gap-10">
+          <div
+            className="hero-reveal absolute inset-0 flex flex-col items-center justify-center gap-10"
+            style={{ opacity: 0 }}
+          >
             <h1
               className="text-white font-bold tracking-tight text-center leading-[0.95]"
               style={{
