@@ -3,7 +3,7 @@ const cards = [
     id: "nature",
     label: "Przyroda i spokój",
     desc: "Dom otoczony zielenią, z dala od zgiełku miast",
-    image: "/images/rzepak-domek.jpg",
+    image: "/images/przyroda.jpg",
     col: "md:col-span-2",
     row: "md:row-span-2",
     mobileH: "h-[320px]",
@@ -85,9 +85,8 @@ export function AmenitiesGrid() {
 
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <p
-                className={`font-semibold mb-1 ${card.image ? "text-white" : "text-cream"} ${
-                  card.large ? "text-xl" : "text-base"
-                }`}
+                className={`font-semibold mb-1 ${card.image ? "text-white" : "text-cream"} ${card.large ? "text-xl" : "text-base"
+                  }`}
               >
                 {card.label}
               </p>
