@@ -3,27 +3,39 @@
 @theme inline {
   --font-sans: var(--font-outfit);
 
-  --color-forest: #f4efe4;
-  --color-cream:  #1b1e18;
-  --color-amber:  #c9933a;
-  --color-sage:   #4d6344;
-  --color-card:   #ebe5d6;
+  --color-forest: #fff;
+  --color-cream: #0f2040;
+  --color-amber: #1e6fa8;
+  --color-sage: #5e8fa3;
+  --color-card: #e8edf5;
 
-  --animate-marquee:         marquee 32s linear infinite;
+  --animate-marquee: marquee 32s linear infinite;
   --animate-marquee-reverse: marquee-reverse 32s linear infinite;
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes marquee-reverse {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 html {
   scroll-behavior: smooth;
@@ -31,33 +43,42 @@ html {
 }
 
 body {
-  background-color: #f4efe4;
-  color: #1b1e18;
+  background-color: #f5f0e8;
+  color: #0f2040;
   font-family: var(--font-outfit, sans-serif);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: #c9933a;
-  color: #f4efe4;
+  background-color: #1e6fa8;
+  color: #f5f0e8;
 }
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #f4efe4; }
-::-webkit-scrollbar-thumb { background: rgba(201,147,58,0.45); border-radius: 2px; }
+::-webkit-scrollbar {
+  width: 4px;
+}
 
-/* ── react-day-picker — forest theme ───────────────────────────────────── */
+::-webkit-scrollbar-track {
+  background: #f5f0e8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(30, 111, 168, 0.45);
+  border-radius: 2px;
+}
+
+/* ── react-day-picker — beach theme ───────────────────────────────────── */
 .booking-calendar {
-  --rdp-accent-color:            #c9933a;
-  --rdp-accent-background-color: rgba(201, 147, 58, 0.12);
-  --rdp-range_start-color:       #f4efe4;
-  --rdp-range_end-color:         #f4efe4;
-  --rdp-range_middle-color:      #1b1e18;
-  --rdp-range_start-date-background-color: #c9933a;
-  --rdp-range_end-date-background-color:   #c9933a;
-  --rdp-today-color:             #c9933a;
-  --rdp-outside-opacity:         0.35;
-  --rdp-disabled-opacity:        0.22;
+  --rdp-accent-color: #1e6fa8;
+  --rdp-accent-background-color: rgba(30, 111, 168, 0.12);
+  --rdp-range_start-color: #f5f0e8;
+  --rdp-range_end-color: #f5f0e8;
+  --rdp-range_middle-color: #0f2040;
+  --rdp-range_start-date-background-color: #1e6fa8;
+  --rdp-range_end-date-background-color: #1e6fa8;
+  --rdp-today-color: #1e6fa8;
+  --rdp-outside-opacity: 0.35;
+  --rdp-disabled-opacity: 0.22;
   --rdp-day_button-border-radius: 0.4rem;
 }
 
@@ -84,7 +105,7 @@ body {
 }
 
 .booking-calendar .rdp-weekday {
-  color: #4d6344;
+  color: #5e8fa3;
   font-size: 0.72rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -93,19 +114,19 @@ body {
 
 .booking-calendar .rdp-button_previous,
 .booking-calendar .rdp-button_next {
-  color: #4d6344;
+  color: #5e8fa3;
   border-radius: 0.5rem;
 }
 
 .booking-calendar .rdp-button_previous:hover,
 .booking-calendar .rdp-button_next:hover {
-  background-color: rgba(27, 30, 24, 0.06);
-  color: #1b1e18;
+  background-color: rgba(15, 32, 64, 0.06);
+  color: #0f2040;
 }
 
 .booking-calendar .rdp-month_caption {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #1b1e18;
+  color: #0f2040;
   letter-spacing: 0.02em;
 }

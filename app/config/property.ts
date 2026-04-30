@@ -8,44 +8,44 @@ export const property = {
   // META & SEO
   // ----------------------------------------------------------
   meta: {
-    title: "Pod Orzechem — Dom Wypoczynkowy Chudzewo",
+    title: "Słoneczna Polana | Domki nad morzem — Niechorze, Bałtyk",
     description:
-      "Dom Wypoczynkowy Pod Orzechem w Chudzewie. 200 m², 8–12 osób, prywatna sauna, taras 30 m². Idealne na eventy, urodziny i wypoczynek. Rezerwacje online.",
+      "Domki wypoczynkowe 350 m od morza w Niechorzu. Do 6 osób, taras, grill, WiFi, plac zabaw. Rezerwacje bezpośrednie: +48 608 443 428.",
     language: "pl",
   },
 
   // ----------------------------------------------------------
   // PODSTAWOWE INFO
   // ----------------------------------------------------------
-  name: "Pod Orzechem",
-  location: "Chudzewo, Mazury",
-  tagline: "Miejsce, gdzie czas zwalnia.",
+  name: "Słoneczna Polana",
+  location: "Niechorze, Zachodniopomorskie",
+  tagline: "Sól w powietrzu, cisza w sercu.",
   description:
-    "Dom Wypoczynkowy Pod Orzechem w Chudzewie — z dala od zgiełku, wśród ciszy i zieleni Mazur.",
+    "Domki wypoczynkowe Słoneczna Polana w Niechorzu — 350 metrów od plaży Bałtyku, w cichej, zielonej okolicy powiatu Rewal.",
   narrative:
-    "Tutaj czas nabiera innego znaczenia. Każdy poranek przynosi spokój, którego szukasz od lat. Każdy wieczór przy kominku to chwila tylko dla siebie. Nie ma pilnych maili. Nie ma korków. Jest tylko cisza, zieleń i ty.",
+    "Otwierasz drzwi i czujesz morskie powietrze — plaża jest stąd pieszo. Taras z drewnianymi meblami, zapach grilla, wieczorne ognisko. Dzieci biją się o trampolinę, ty nie spieszysz się nigdzie. Niechorze ma w sobie coś, przez co goście wracają rok po roku.",
 
   // ----------------------------------------------------------
   // DANE OBIEKTU
   // ----------------------------------------------------------
   capacity: {
-    min: 8,
-    max: 12,
+    min: 2,
+    max: 6,
   },
   area: {
-    interior: "200 m²",
-    terrace: "30 m²",
+    interior: "do uzupełnienia",
+    terrace: "do uzupełnienia",
   },
-  distanceToLake: "450 m",
+  distanceTo: "350 m",
 
   // ----------------------------------------------------------
   // KONTAKT
   // ----------------------------------------------------------
   contact: {
-    phones: ["+48 500 116 667", "+48 530 921 138"],
-    email: "chudzewo@gmail.com",
-    facebook: "https://facebook.com",
-    instagram: "https://instagram.com",
+    phones: ["+48 608 443 428"],
+    email: "do uzupełnienia",
+    facebook: "https://www.facebook.com/SlonecznaPolanaNiechorze/",
+    instagram: "https://www.instagram.com",
   },
 
   // ----------------------------------------------------------
@@ -54,30 +54,38 @@ export const property = {
   pricing: {
     currency: "zł",
     seasons: [
-      { months: [1, 2, 3, 11, 12], rate: 450 },  // off-season
-      { months: [4, 10],           rate: 550 },  // wiosna/jesień
-      { months: [5, 9],            rate: 620 },  // maj/wrzesień
-      { months: [6],               rate: 700 },  // wczesne lato
-      { months: [7, 8],            rate: 850 },  // peak
+      { months: [1, 2, 3, 11, 12], rate: 0 },  // do uzupełnienia
+      { months: [4, 10],           rate: 0 },  // do uzupełnienia
+      { months: [5, 9],            rate: 0 },  // do uzupełnienia
+      { months: [6],               rate: 0 },  // do uzupełnienia
+      { months: [7, 8],            rate: 0 },  // do uzupełnienia
     ],
-    weekendSurcharge: 80,  // piątek + sobota
+    weekendSurcharge: 0,
     minNights: 2,
     maxNights: 14,
-    maxGuests: 12,
-    displayFrom: "450 zł",
+    maxGuests: 6,
+    displayFrom: "do uzupełnienia",
     displaySuffix: "za noc · cena zmienia się sezonowo",
   },
 
-  cancellationPolicy: "Bezpłatne odwołanie do 7 dni przed przyjazdem",
+  cancellationPolicy: "Kaucja (równowartość jednej nocy) bezzwrotna. Szczegółowe warunki anulacji dostępne telefonicznie.",
+
+  // ----------------------------------------------------------
+  // MAPA — koordynaty GPS obiektu
+  // ----------------------------------------------------------
+  map: {
+    lat: 54.0575,
+    lng: 15.0772,
+  },
 
   // ----------------------------------------------------------
   // STATYSTYKI (sekcja Description)
   // ----------------------------------------------------------
   stats: [
-    { value: "8–12", label: "Osób" },
-    { value: "200 m²", label: "Powierzchnia" },
-    { value: "30 m²", label: "Taras" },
-    { value: "450 m", label: "Do jeziora" },
+    { value: "2–6",    label: "Osób" },
+    { value: "350 m",  label: "Do morza" },
+    { value: "WiFi + Grill", label: "Gratis" },
+    { value: "Niechorze", label: "Lokalizacja" },
   ],
 
   // ----------------------------------------------------------
@@ -85,35 +93,35 @@ export const property = {
   // ----------------------------------------------------------
   amenities: [
     {
-      id: "nature",
-      label: "Przyroda i spokój",
-      desc: "Dom otoczony zielenią, z dala od zgiełku miast",
-      image: "/images/przyroda.jpg",
+      id: "morze",
+      label: "Plaża o krok",
+      desc: "Piaszczysta plaża Bałtyku zaledwie pięć minut pieszo",
+      image: "/images/scraped/property-02.jpg",
       large: true,
     },
     {
       id: "wifi",
       label: "Szybki WiFi",
-      desc: "Światłowód 100 Mb/s",
+      desc: "Bezpłatny WiFi na terenie całego obiektu",
       image: null,
     },
     {
-      id: "sauna",
-      label: "Prywatna sauna",
-      desc: "Fińska, opałana drewnem",
-      image: "https://picsum.photos/seed/wood-sauna-dark/600/600",
+      id: "grill",
+      label: "Grill i taras",
+      desc: "Zadaszony taras z meblami ogrodowymi i własnym grillem",
+      image: "/images/scraped/property-07.jpg",
     },
     {
       id: "parking",
-      label: "Parking",
-      desc: "2 miejsca w garażu + kilka na posesji",
+      label: "Strzeżony parking",
+      desc: "Jedno miejsce parkingowe bezpłatnie przy każdym domku",
       image: null,
     },
     {
-      id: "kitchen",
-      label: "Pełna kuchnia",
-      desc: "Zabudowana, z piekarnikiem, zmywarką i ekspresem",
-      image: "https://picsum.photos/seed/minimal-kitchen-dark/1200/600",
+      id: "playground",
+      label: "Plac zabaw",
+      desc: "Trampoliny, huśtawki, zjeżdżalnie i piaskownice na miejscu",
+      image: "/images/scraped/property-05.jpg",
       wide: true,
     },
   ],
@@ -122,47 +130,47 @@ export const property = {
   // MARQUEE — tagi przewijające się w pasku
   // ----------------------------------------------------------
   marquee: [
-    "SAUNA FIŃSKA",
-    "PEŁNA KUCHNIA",
-    "8-12 OSÓB",
     "SZYBKI WIFI",
-    "GARAŻ + PARKING",
-    "KOMINEK",
-    "TARAS 30 M²",
-    "EVENTY",
-    "URODZINY",
-    "BABY SHOWER",
-    "PREZENTACJE FIRMOWE",
-    "200 M² POWIERZCHNI",
+    "GRILL PRZY DOMKU",
+    "PLAC ZABAW",
+    "350 M DO MORZA",
+    "DO 6 OSÓB",
+    "OGNISKO",
+    "ZADASZONY TARAS",
+    "STRZEŻONY PARKING",
+    "NIECHORZE, BAŁTYK",
+    "DOMKI RODZINNE",
+    "ŚCIEŻKI ROWEROWE",
+    "CISZA I SPOKÓJ",
   ],
 
   // ----------------------------------------------------------
   // KARTY ZDJĘCIOWE (sekcja Description)
   // ----------------------------------------------------------
   descriptionCards: [
-    { image: "/images/domek-front.jpg",     caption: "Dom otoczony zielenią",    note: "4 rowery do dyspozycji" },
-    { image: "/images/grill.jpg",           caption: "Grill elektryczny",        note: "Na tarasie, do dyspozycji gości" },
-    { image: "/images/fota2.jpg",           caption: "Wnętrze z charakterem",    note: "Ekologiczne produkty (za dodatkową opłatą)" },
-    { image: "/images/inside/foto1.jpg",    caption: "Kominek na wieczory",      note: "Drewno i węgiel zapewnione" },
-    { image: "/images/inside/foto3.jpg",    caption: "Przestronna kuchnia",      note: "Grill elektryczny do dyspozycji" },
-    { image: "/images/fota.jpg",            caption: "Jezioro 450 m stąd",       note: "Wędki dostępne dla gości" },
-    { image: "/images/sypialnia.jpg",       caption: "Sypialnia",                note: "Ciche poranki, miękka pościel" },
-    { image: "/images/taras.jpg",           caption: "30 m² tarasu",             note: "Palenisko na tarasie" },
-    { image: "/images/salon.jpg",           caption: "Salon",                    note: "Boisko do siatkówki na terenie" },
-    { image: "/images/domek-front-2.jpg",   caption: "Dom w każdej porze roku",  note: "Zima, wiosna, lato, jesień" },
+    { image: "/images/scraped/property-02.jpg",  caption: "Domek z zewnątrz",       note: "Zaciszna okolica, zieleń wokół" },
+    { image: "/images/scraped/property-07.jpg",  caption: "Teren obiektu",           note: "350 m do plaży Bałtyku" },
+    { image: "/images/scraped/property-13.jpg",  caption: "Wnętrze domku",           note: "Przytulne i dobrze wyposażone" },
+    { image: "/images/scraped/property-04.jpg",  caption: "Okolica",                 note: "Ścieżki rowerowe i las" },
+    { image: "/images/scraped/property-05.jpg",  caption: "Plac zabaw",              note: "Trampoliny i zjeżdżalnie" },
+    { image: "/images/scraped/property-09.jpg",  caption: "Grill i taras",           note: "Zadaszony taras przy domku" },
+    { image: "/images/scraped/property-16.jpg",  caption: "Strefa wypoczynkowa",     note: "TV, salon, relaks po plaży" },
+    { image: "/images/scraped/property-08.jpg",  caption: "Wnętrze",                 note: "Pełne wyposażenie kuchni" },
+    { image: "/images/scraped/property-06.jpg",  caption: "Wejście do domku",        note: "Własne miejsce parkingowe" },
+    { image: "/images/scraped/property-01.jpg",  caption: "Słoneczna Polana",        note: "Goście wracają co roku" },
   ],
 
   // ----------------------------------------------------------
   // GALERIA
   // ----------------------------------------------------------
   gallery: [
-    { src: "/images/domek-front-2.jpg",  alt: "Domek Pod Orzechem" },
-    { src: "/images/inside/foto1.jpg",   alt: "Wnętrze — salon" },
-    { src: "/images/rzepak-domek.jpg",   alt: "Domek wśród natury" },
-    { src: "/images/inside/foto2.jpg",   alt: "Sypialnia główna" },
-    { src: "/images/inside/foto3.jpg",   alt: "Kuchnia i jadalnia" },
-    { src: "/images/rzepak-zoom.jpg",    alt: "Okolica — Mazury" },
-    { src: "/images/domek-front.jpg",    alt: "Taras i ogród" },
+    { src: "/images/scraped/property-02.jpg",  alt: "Domki Słoneczna Polana — widok z zewnątrz" },
+    { src: "/images/scraped/property-07.jpg",  alt: "Teren obiektu w Niechorzu" },
+    { src: "/images/scraped/property-13.jpg",  alt: "Wnętrze domku" },
+    { src: "/images/scraped/property-04.jpg",  alt: "Otoczenie obiektu — przyroda" },
+    { src: "/images/scraped/property-05.jpg",  alt: "Plac zabaw dla dzieci" },
+    { src: "/images/scraped/property-09.jpg",  alt: "Taras z meblami ogrodowymi i grillem" },
+    { src: "/images/scraped/property-16.jpg",  alt: "Strefa wypoczynkowa w domku" },
   ],
 
   // ----------------------------------------------------------
@@ -226,14 +234,14 @@ export const property = {
   // KOPIE UI (CTA, nagłówki sekcji)
   // ----------------------------------------------------------
   copy: {
-    heroCta:         "Zarezerwuj pobyt",
-    heroCtaSecondary: "Odkryj domek",
-    bookingLabel:    "Rezerwacja",
-    bookingHeading:  "Zaplanuj swój pobyt.",
-    bookingSubhead:  "Rezerwacja bezpośrednia — bez pośredników i ukrytych opłat. Wybierz termin i sprawdź dostępność.",
-    bookingSubmit:   "Zarezerwuj teraz",
-    footerTagline:   "Dom wypoczynkowy dla grup 8–12 osób. Rezerwacje 7 dni w tygodniu.",
-    copyright:       "© 2026 Chudzewo. Wszelkie prawa zastrzeżone.",
+    heroCta:          "Zarezerwuj pobyt",
+    heroCtaSecondary: "Odkryj domki",
+    bookingLabel:     "Rezerwacja",
+    bookingHeading:   "Zaplanuj swój pobyt.",
+    bookingSubhead:   "Rezerwacja bezpośrednia — bez pośredników i ukrytych opłat. Wybierz termin i sprawdź dostępność.",
+    bookingSubmit:    "Zarezerwuj teraz",
+    footerTagline:    "Domki wypoczynkowe dla rodzin. 350 m od Bałtyku. Rezerwacje: +48 608 443 428.",
+    copyright:        "© 2026 Słoneczna Polana. Wszelkie prawa zastrzeżone.",
   },
 
 } as const

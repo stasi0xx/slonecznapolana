@@ -1,0 +1,99 @@
+{
+  "url": "https://slonecznapolananiechorze.pl/",
+  "scraped_at": "2026-04-29T12:40:13.946Z",
+  "scrape_status": "ok",
+  "property": {
+    "name": "Słoneczna Polana",
+    "tagline": "Domki wypoczynkowe w Niechorzu",
+    "description": "Komfortowe domki wypoczynkowe dla rodzin położone 350 metrów od morza, w cichej okolicy. Idealne miejsce na wakacje nad Bałtykiem z dala od miejskiego zgiełku. Obiekt oferuje domki 6-osobowe z tarasami i grillami. Na terenie posesji znajduje się plac zabaw dla dzieci i bezpłatny parking. Lokalizacja zapewnia łatwy dostęp do plaży oraz ścieżek rowerowych łączących wszystkie gminy powiatu Rewal.",
+    "location": {
+      "address": "ul. Spacerowa 12",
+      "city": "Niechorze",
+      "region": "Zachodniopomorskie",
+      "country": "Polska",
+      "distance_to_beach_m": 350,
+      "distance_to_lake_m": null,
+      "distance_to_sea_m": 350
+    },
+    "capacity": {
+      "guests": 6,
+      "bedrooms": 2,
+      "beds": 3,
+      "bathrooms": 1
+    },
+    "size_m2": null,
+    "pricing": {
+      "base_per_night_pln": null,
+      "seasonal_notes": "Cennik sezon 2026 — szczegółowe stawki sezonowe dostępne na stronie lub telefonicznie. Kaucja: równowartość jednej nocy (bezzwrotna). Pozostała kwota płatna gotówką przy zameldowaniu lub przelewem z wyprzedzeniem.",
+      "currency": "PLN",
+      "deposit": "1 noc (bezzwrotna)",
+      "extra_car": "10 PLN/noc"
+    },
+    "min_stay_nights": null,
+    "amenities": [
+      "TV i strefa wypoczynkowa",
+      "Płyta indukcyjna",
+      "Lodówka",
+      "Prysznic",
+      "Toaleta",
+      "Umywalka",
+      "Zadaszony taras z meblami ogrodowymi",
+      "Grill przy każdym domku",
+      "Szybkie bezpłatne WiFi",
+      "Duży plac zabaw (trampoliny, huśtawki, zjeżdżalnie, piaskownice)",
+      "Strzeżony parking (1 miejsce/domek)",
+      "Miejsce na ognisko",
+      "Żelazko i deska do prasowania (do odbioru w recepcji)"
+    ],
+    "rules": [
+      "Zakaz palenia wewnątrz domków",
+      "Kaucja bezzwrotna w wysokości jednej nocy — wymagana przy rezerwacji",
+      "Dodatkowe osoby wymagają zgody właściciela",
+      "Szkody należy niezwłocznie zgłaszać właścicielowi",
+      "Gość odpowiada materialnie za wszelkie uszkodzenia mienia",
+      "Nadzór nad dziećmi na placu zabaw — odpowiedzialność rodziców",
+      "Goście zewnętrzni muszą być wcześniej zapowiedziani",
+      "Zakaz smażenia ryb wewnątrz — tylko na grillu zewnętrznym",
+      "Brak opłaty za sprzątanie — goście zobowiązani do utrzymania porządku",
+      "Dodatkowy pojazd: 10 PLN/noc"
+    ],
+    "checkin": "14:00",
+    "checkout": "10:00",
+    "cancellation_policy": "Kaucja (równowartość jednej nocy) bezzwrotna. Szczegółowe warunki anulacji nie zostały opublikowane na stronie.",
+    "contact": {
+      "phone": "+48 608 443 428",
+      "email": null,
+      "facebook": "https://www.facebook.com/SlonecznaPolanaNiechorze/",
+      "booking_link": null,
+      "booking_method": "Rezerwacje wyłącznie telefoniczne",
+      "bank_account": "73 1140 2004 0000 3302 7960 2372",
+      "account_holder": "Monika Ulidowska"
+    },
+    "rating": {
+      "score": 5.0,
+      "notes": "Liczne recenzje 5-gwiazdkowe: cisza, czystość, bliskość plaży, pomocni właściciele, idealny dla rodzin. Goście wracają co roku."
+    }
+  },
+  "images": [
+    { "filename": "property-01.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/img_20190626_163128-copy.jpg", "size_kb": 46 },
+    { "filename": "property-02.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/img_20190626_161652.jpg", "size_kb": 582 },
+    { "filename": "property-03.webp", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/koo.webp", "size_kb": 31 },
+    { "filename": "property-04.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/477305034.jpg", "size_kb": 119 },
+    { "filename": "property-05.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/256828730.jpg", "size_kb": 124 },
+    { "filename": "property-06.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/img_20190626_161924-copy.jpg", "size_kb": 74 },
+    { "filename": "property-07.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/223-24.jpg", "size_kb": 241 },
+    { "filename": "property-08.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/477303701.jpg", "size_kb": 85 },
+    { "filename": "property-09.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/205655214.jpg", "size_kb": 141 },
+    { "filename": "property-10.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/img_20190626_162956-copy.jpg", "size_kb": 53 },
+    { "filename": "property-11.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/img_20190626_162920-copy.jpg", "size_kb": 57 },
+    { "filename": "property-12.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/img_20190626_162829-copy.jpg", "size_kb": 47 },
+    { "filename": "property-13.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/img_20190626_162815.jpg", "size_kb": 301 },
+    { "filename": "property-14.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/img_20190626_161908-copy.jpg", "size_kb": 54 },
+    { "filename": "property-15.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/img_20190626_161942-copy.jpg", "size_kb": 66 },
+    { "filename": "property-16.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/256828599.jpg", "size_kb": 115 },
+    { "filename": "property-17.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/207632546.jpg", "size_kb": 52 },
+    { "filename": "property-18.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/img_20190626_162517-copy.jpg", "size_kb": 34 },
+    { "filename": "property-19.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/img_20190626_162530-copy.jpg", "size_kb": 39 },
+    { "filename": "property-20.jpg", "original_url": "https://slonecznapolananiechorze.pl/wp-content/uploads/2024/03/205608601.jpg", "size_kb": 22 }
+  ]
+}

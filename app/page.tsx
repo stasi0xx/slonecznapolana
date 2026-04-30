@@ -6,6 +6,7 @@ import { AmenitiesGrid } from "./components/AmenitiesGrid";
 import { ScrubbingText } from "./components/ScrubbingText";
 import { Gallery } from "./components/Gallery";
 import { AttractionMap } from "./components/AttractionMap";
+import { LocationMap } from "./components/LocationMap";
 import { Reviews } from "./components/Reviews";
 import { BookingCta } from "./components/BookingCta";
 import { Footer } from "./components/Footer";
@@ -22,6 +23,7 @@ export default function Home() {
       <ScrubbingText />
       <Gallery />
       <AttractionMap />
+      <LocationMap />
       <Reviews />
       <BookingCta />
       <Footer />

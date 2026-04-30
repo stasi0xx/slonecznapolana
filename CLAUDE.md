@@ -14,15 +14,15 @@ Cel: landing page z systemem rezerwacji online (direct booking, bez OTA).
 
 ## Styl wizualny (gpt-taste)
 
-Awwwards-level, dark, forest/cabin aesthetic. Ustalony design system w `globals.css`:
+Awwwards-level, light, beach/coastal aesthetic. Ustalony design system w `globals.css`:
 
 | Token | Wartość | Użycie |
 |-------|---------|--------|
-| `forest` | `#0c0e09` | tło strony |
-| `cream`  | `#f0ead9` | tekst główny |
-| `amber`  | `#c9933a` | akcenty, CTA |
-| `sage`   | `#8a9e7f` | tekst wtórny |
-| `card`   | `#161a12` | tła kart |
+| `forest` | `#f5f0e8` | tło strony (piasek) |
+| `cream`  | `#0f2040` | tekst główny (granat) |
+| `amber`  | `#1e6fa8` | akcenty, CTA (fala) |
+| `sage`   | `#5e8fa3` | tekst wtórny (morska mgła) |
+| `card`   | `#e8edf5` | tła kart |
 
 Zasady designu:
 - H1 max 2-3 linie, `clamp(3.5rem, 6.5vw, 7.5rem)`, kontenery `max-w-2xl`+
