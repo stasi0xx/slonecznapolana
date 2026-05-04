@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server"
 import { getBookedRanges } from "@/app/lib/availability"
 
+export const dynamic = "force-dynamic"
+
 export async function GET() {
   try {
     const ranges = await getBookedRanges()

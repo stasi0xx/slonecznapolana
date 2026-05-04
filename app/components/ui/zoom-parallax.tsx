@@ -9,7 +9,7 @@ interface Image {
 }
 
 interface ZoomParallaxProps {
-  images: Image[];
+  images: readonly Image[];
 }
 
 export function ZoomParallax({ images }: ZoomParallaxProps) {
