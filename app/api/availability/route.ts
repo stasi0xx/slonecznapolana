@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { getBookedRanges } from "@/app/actions/bookings"
+import { getBookedRanges } from "@/app/lib/availability"
 
 export async function GET() {
   try {
@@ -7,7 +7,8 @@ export async function GET() {
     return NextResponse.json(ranges, {
       headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=30" },
     })
-  } catch {
+  } catch (err) {
+    console.error("[availability]", err)
     return NextResponse.json({ error: "Błąd serwera" }, { status: 500 })
   }
 }

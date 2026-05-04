@@ -9,7 +9,7 @@ import { property } from "@/app/config/property";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ROTATIONS = ["-1.8deg","2.2deg","-1.1deg","2.8deg","-2.4deg","1.5deg","-1.9deg","2.1deg","-1.3deg","2.5deg"];
+const ROTATIONS = ["-1.8deg", "2.2deg", "-1.1deg", "2.8deg", "-2.4deg", "1.5deg", "-1.9deg", "2.1deg", "-1.3deg", "2.5deg"];
 
 export function Description() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -48,7 +48,7 @@ export function Description() {
               Miejsce, gdzie{" "}
               <span
                 className="inline-block w-20 h-9 md:w-28 md:h-11 rounded-full align-middle mx-2 md:mx-3 bg-cover bg-center relative -top-1 opacity-90"
-                style={{ backgroundImage: "url(/images/rzepak-zoom.jpg)" }}
+                style={{ backgroundImage: "url(/images/scraped/property-08.jpg)" }}
                 aria-hidden="true"
               />
               {" "}czas zwalnia.

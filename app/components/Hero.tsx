@@ -9,7 +9,7 @@ import { property } from "@/app/config/property";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FRAME_COUNT = 99;
+const FRAME_COUNT = 157;
 const FRAME_PATH = (n: number) =>
   `/assets/hero-frames/frame_${String(n).padStart(4, "0")}.webp`;
 

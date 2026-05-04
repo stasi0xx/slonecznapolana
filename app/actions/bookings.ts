@@ -1,7 +1,7 @@
 "use server"
 
 import { prisma } from "@/app/lib/prisma"
-import { Prisma } from "@prisma/client"
+import { Prisma } from "@/app/lib/generated/prisma/client"
 import { z } from "zod"
 import { revalidatePath } from "next/cache"
 
@@ -91,20 +91,4 @@ export async function createBooking(input: unknown): Promise<BookingResult> {
   return { success: false, error: "Nie udało się zarezerwować. Spróbuj ponownie." }
 }
 
-export type BookedRange = { checkIn: string; checkOut: string }
-
-export async function getBookedRanges(): Promise<BookedRange[]> {
-  await prisma.booking.deleteMany({
-    where: { status: "PENDING", expiresAt: { lt: new Date() } },
-  })
-
-  const bookings = await prisma.booking.findMany({
-    where: { status: { in: ["PENDING", "CONFIRMED"] } },
-    select: { checkIn: true, checkOut: true },
-  })
-
-  return bookings.map((b) => ({
-    checkIn: b.checkIn.toISOString().slice(0, 10),
-    checkOut: b.checkOut.toISOString().slice(0, 10),
-  }))
-}
+export type { BookedRange } from "@/app/lib/availability"
